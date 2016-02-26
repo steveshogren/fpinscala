@@ -6,6 +6,19 @@ import fpinscala.datastructures.List._
 import collection.mutable.Stack
 import org.scalatest._
 
+// Generalize tail to the function drop , which removes the first n elements from a list.
+//   Note that this function takes time proportional only to the number of elements being
+// dropped—we don’t need to make a copy of the entire List .
+// def drop[A](l: List[A], n: Int): List[A]
+class HW3P4 extends FlatSpec with Matchers {
+  "drop" should "correctly drop the first character" in {
+    drop(List(1, 2), 1) should be (List(2))
+  }
+  it should "correctly drop the first several characters" in {
+    drop(List(1, 2, 3, 4), 2) should be (List(3, 4))
+  }
+}
+
 // Using the same idea, implement the function setHead for replacing the first element
 // of a List with a different value.
 class HW3P3 extends FlatSpec with Matchers {

@@ -28,4 +28,14 @@ object List {
       case Cons(_, x) => Cons(newHead,x)
       case Nil => Nil
     }
+
+  def drop[A](l: List[A], n: Int): List[A] = {
+    @annotation.tailrec
+    def g(rest: List[A], n: Int) : List[A] = {
+      if (n > 0) g(tail(rest), n-1)
+      else rest
+    }
+    g(l, n)
+  }
+
 }
