@@ -22,4 +22,10 @@ object List {
       case Cons(_, x) => x
       case Nil => Nil
     }
+
+  def setHead[A](as: List[A], newHead:A): List[A] =
+    as match {
+      case Cons(_, x) => Cons(newHead,x)
+      case Nil => Nil
+    }
 }
