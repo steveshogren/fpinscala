@@ -1,10 +1,14 @@
 package hof
 
 object HOF {
+  def compose[A,B,C](f: B => C, g: A => B): A => C =
+    (a:A) => f(g(a))
+
+  def uncurry[A,B,C](f: A => B => C): (A, B) => C =
+    (a:A, b:B) => f(a)(b)
 
   def curry[A,B,C](f: (A, B) => C): A => (B => C) =
     (a:A) => { (b:B) => f(a,b) }
-
 
   def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
     @annotation.tailrec

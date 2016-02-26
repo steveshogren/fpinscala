@@ -11,6 +11,20 @@ import org.scalatest._
 object Types{
   type Tempo = (Int,Int) => Int
 }
+class HW2P5 extends FlatSpec with Matchers {
+  "compose" should "correctly compose" in {
+    val add5 = (x:Int) =>  x + 5
+    val halve = (x:Int) =>  x / 2
+    HOF.compose(halve, add5)(5) should be (5)
+  }
+}
+
+class HW2P4 extends FlatSpec with Matchers {
+  "uncurry" should "correctly uncurry" in {
+    val add = (x:Int, y:Int) =>  x + y
+    HOF.uncurry(HOF.curry(add))(1, 2) should be (3)
+  }
+}
 
 class HW2P3 extends FlatSpec with Matchers {
   "curry" should "correctly curry" in {
