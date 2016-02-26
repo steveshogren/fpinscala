@@ -17,6 +17,7 @@ object List {
     if (as.isEmpty) Nil
     else Cons(as.head, apply(as.tail: _*))
 
+
   def tail[A](as: List[A]): List[A] =
     as match {
       case Cons(_, x) => x
@@ -36,6 +37,14 @@ object List {
       else rest
     }
     g(l, n)
+  }
+
+  @annotation.tailrec
+  def dropWhile[A](l: List[A], pred: A => Boolean): List[A] = {
+    l match {
+      case Cons(x, xs) if (pred(x)) => dropWhile(xs, pred)
+      case _ => l
+    }
   }
 
 }

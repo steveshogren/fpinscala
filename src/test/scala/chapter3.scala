@@ -6,6 +6,15 @@ import fpinscala.datastructures.List._
 import collection.mutable.Stack
 import org.scalatest._
 
+class HW3P5 extends FlatSpec with Matchers {
+  "dropWhile" should "correctly drop while true" in {
+    dropWhile(List(1, 2, 3), (a:Int) => {a == 1}) should be (List(2,3))
+  }
+  it should "correctly drop with other type" in {
+    dropWhile(List(1, 2, 3), (a:Int) => {a <= 3}) should be (Nil)
+  }
+}
+
 // Generalize tail to the function drop , which removes the first n elements from a list.
 //   Note that this function takes time proportional only to the number of elements being
 // dropped—we don’t need to make a copy of the entire List .
