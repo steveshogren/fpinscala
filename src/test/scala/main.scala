@@ -1,11 +1,23 @@
+package hof
+
 import fpinscala.datastructures.List
 import fpinscala.datastructures.Cons
 import fpinscala.datastructures.Nil
 import fpinscala.datastructures.List.sum
-import hof.HOF
 
 import collection.mutable.Stack
 import org.scalatest._
+
+object Types{
+  type Tempo = (Int,Int) => Int
+}
+
+class HW2P3 extends FlatSpec with Matchers {
+  "curry" should "correctly curry" in {
+    val add = (x:Int, y:Int) =>  x + y
+    HOF.curry(add)(1)(2) should be (3)
+  }
+}
 
 class HW2P2 extends FlatSpec with Matchers {
   // Implement isSorted , which checks whether an Array[A] is sorted according to a
@@ -14,10 +26,10 @@ class HW2P2 extends FlatSpec with Matchers {
   "isSorted" should "prove 1,2 sorted" in {
     HOF.isSorted(Array[Int](1,2), (a:Int, b:Int) => { a < b}) should be (true)
   }
-  "isSorted" should "prove 2,1,4 not sorted" in {
+  it should "prove 2,1,4 not sorted" in {
     HOF.isSorted(Array[Int](2,1,3), (a:Int, b:Int) => { a < b}) should be (false)
   }
-  "isSorted" should "prove 1,2,1 not sorted" in {
+  it should "prove 1,2,1 not sorted" in {
     HOF.isSorted(Array[Int](1, 2, 1), (a:Int, b:Int) => { a < b}) should be (false)
   }
 }

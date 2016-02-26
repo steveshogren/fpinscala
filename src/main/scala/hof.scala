@@ -2,6 +2,10 @@ package hof
 
 object HOF {
 
+  def curry[A,B,C](f: (A, B) => C): A => (B => C) =
+    (a:A) => { (b:B) => f(a,b) }
+
+
   def isSorted[A](as: Array[A], ordered: (A,A) => Boolean): Boolean = {
     @annotation.tailrec
     def g(rest: Array[A], a: A, b: A) : Boolean = {
