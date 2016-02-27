@@ -4,6 +4,20 @@ case object Nil extends List[Nothing]
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 object List {
+  def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B =
+    as match {
+      case Nil => z
+      case Cons(x, xs) => f(x, foldRight(xs, z)(f))
+  }
+
+  def length2[A](as: List[A]): Int =
+    foldRight(as, 0)((_,b) => 1 + b)
+
+  def sum2(ns: List[Int]) =
+    foldRight(ns, 0)(_ + _)
+  def product2(ns: List[Double]) =
+    foldRight(ns, 1.0)(_ * _)
+
   def sum(ints: List[Int]): Int = ints match {
     case Nil => 0
     case Cons(x,xs) => x + sum(xs)
@@ -40,11 +54,10 @@ object List {
   }
 
   @annotation.tailrec
-  def dropWhile[A](l: List[A], pred: A => Boolean): List[A] = {
-    l match {
-      case Cons(x, xs) if (pred(x)) => dropWhile(xs, pred)
-      case _ => l
-    }
+  def dropWhile[A](as: List[A])(f: A => Boolean): List[A] =
+    as match {
+      case Cons(h,t) if f(h) => dropWhile(t)(f)
+      case _ => as
   }
 
   def reverse[A](l: List[A]): List[A] = {
@@ -71,6 +84,5 @@ object List {
     }
     reverse(g(l, Nil))
   }
-
 
 }

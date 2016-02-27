@@ -6,6 +6,11 @@ import fpinscala.datastructures.List._
 import collection.mutable.Stack
 import org.scalatest._
 
+class HW3P9 extends FlatSpec with Matchers {
+  "length" should "removes produce the size" in {
+    length2(List(1, 2, 3)) should be (3)
+  }
+}
 class HW3P6 extends FlatSpec with Matchers {
   "init" should "removes the last element" in {
     init(List(1, 2, 3)) should be (List(1,2))
@@ -19,10 +24,10 @@ class HW3Helpers extends FlatSpec with Matchers {
 
 class HW3P5 extends FlatSpec with Matchers {
   "dropWhile" should "correctly drop while true" in {
-    dropWhile(List(1, 2, 3), (a:Int) => {a == 1}) should be (List(2,3))
+    dropWhile(List(1, 2, 3))(_ == 1) should be (List(2,3))
   }
   it should "correctly drop with other type" in {
-    dropWhile(List(1, 2, 3), (a:Int) => {a <= 3}) should be (Nil)
+    dropWhile(List(1, 2, 3))(_ <= 3) should be (Nil)
   }
 }
 
