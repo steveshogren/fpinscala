@@ -6,6 +6,12 @@ import fpinscala.datastructures.List._
 import collection.mutable.Stack
 import org.scalatest._
 
+class HW3P10 extends FlatSpec with Matchers {
+  "foldLeft" should "be tail recursive" in {
+    foldLeft(List(1,2,3), 0)((b,_) => 1 + b) should be (3)
+  }
+}
+
 class HW3P9 extends FlatSpec with Matchers {
   "length" should "removes produce the size" in {
     length2(List(1, 2, 3)) should be (3)

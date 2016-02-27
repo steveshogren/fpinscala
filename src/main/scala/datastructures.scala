@@ -4,11 +4,23 @@ case object Nil extends List[Nothing]
 case class Cons[+A](head: A, tail: List[A]) extends List[A]
 
 object List {
+  def foldLeft[A,B](as: List[A], z: B)(f: (B, A) => B): B = {
+    @annotation.tailrec
+    def g(rest: List[A], ret: B) : B = {
+      rest match {
+        case Nil => ret
+        case Cons(x, xs) => g(xs, f(ret, x))
+      }
+    }
+    g(as, z)
+  }
+
+
   def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B =
     as match {
       case Nil => z
       case Cons(x, xs) => f(x, foldRight(xs, z)(f))
-  }
+   }
 
   def length2[A](as: List[A]): Int =
     foldRight(as, 0)((_,b) => 1 + b)
