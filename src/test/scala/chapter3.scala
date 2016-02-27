@@ -6,6 +6,17 @@ import fpinscala.datastructures.List._
 import collection.mutable.Stack
 import org.scalatest._
 
+class HW3P6 extends FlatSpec with Matchers {
+  "init" should "removes the last element" in {
+    init(List(1, 2, 3)) should be (List(1,2))
+  }
+}
+class HW3Helpers extends FlatSpec with Matchers {
+  "reverse" should "reverse a list" in {
+    reverse(List(1, 2, 3)) should be (List(3, 2, 1))
+  }
+}
+
 class HW3P5 extends FlatSpec with Matchers {
   "dropWhile" should "correctly drop while true" in {
     dropWhile(List(1, 2, 3), (a:Int) => {a == 1}) should be (List(2,3))

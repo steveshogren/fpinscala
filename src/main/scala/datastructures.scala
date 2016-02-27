@@ -47,4 +47,30 @@ object List {
     }
   }
 
+  def reverse[A](l: List[A]): List[A] = {
+    @annotation.tailrec
+    def g(rest: List[A], ret: List[A]) : List[A] = {
+      rest match {
+        case Cons(x, Nil) => Cons(x, ret)
+        case Cons(x, Cons(y, ys)) => g(Cons(y, ys), Cons(x, ret))
+        case Nil => Nil
+      }
+    }
+    g(l, Nil)
+  }
+
+  def init[A](l: List[A]): List[A] = {
+    @annotation.tailrec
+    def g(rest: List[A], ret: List[A]) : List[A] = {
+      rest match {
+        case Cons(x, Nil) => ret
+        case Cons(x, Cons(_, Nil)) => Cons(x, ret)
+        case Cons(x, Cons(y, ys)) => g(Cons(y, ys), Cons(x, ret))
+        case Nil => Nil
+      }
+    }
+    reverse(g(l, Nil))
+  }
+
+
 }
