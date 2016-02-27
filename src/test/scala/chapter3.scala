@@ -6,6 +6,14 @@ import fpinscala.datastructures.List._
 import collection.mutable.Stack
 import org.scalatest._
 
+class HW3P11 extends FlatSpec with Matchers {
+  "sum product and length" should "use foldleft" in {
+    lengthL(List(1, 2, 3)) should be (3)
+    sumL(List(1, 2, 3)) should be (6)
+    productL(List(1, 2, 3)) should be (6)
+  }
+}
+
 class HW3P10 extends FlatSpec with Matchers {
   "foldLeft" should "be tail recursive" in {
     foldLeft(List(1,2,3), 0)((b,_) => 1 + b) should be (3)

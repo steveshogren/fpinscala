@@ -14,6 +14,12 @@ object List {
     }
     g(as, z)
   }
+  def lengthL[A](as: List[A]): Int =
+    foldLeft(as, 0)((b,_) => 1 + b)
+  def sumL(ns: List[Int]) =
+    foldLeft(ns, 0)(_ + _)
+  def productL(ns: List[Double]) =
+    foldLeft(ns, 1.0)(_ * _)
 
 
   def foldRight[A,B](as: List[A], z: B)(f: (A, B) => B): B =
